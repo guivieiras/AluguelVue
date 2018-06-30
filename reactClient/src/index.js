@@ -6,12 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import logo from './public/two-houses.svg';
 import database from './database.js';
 
-console.log(database);
-var ojb = {}
-ojb.dados = database;
-
-
-ReactDOM.render(<App casas={database}/> , document.getElementById('root'));
+ReactDOM.render(<App/> , document.getElementById('root'));
 document.getElementById('logo').setAttribute('src', logo);
 
 registerServiceWorker();
