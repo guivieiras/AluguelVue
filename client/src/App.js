@@ -1,30 +1,60 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import './public/home.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.detalhesCasa = this.detalhesCasa.bind(this)
+  }
 
+  state = {
+    response: '',
+    casaSelecionada: 5
+  };
 
+  componentDidMount() {
+    this.callApi()
+      .then(res => this.setState({ response: res.express }))
+      .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch('/teste');
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
+  detalhesCasa(casa) {
+    this.setState({ casaSelecionada: casa }, () => {
+      console.log(this.state);
+      ReactDOM.render(<DetalhesCasa casa={this.state.casaSelecionada} />, document.getElementById("contente"));
+    });
+  }
+
+  //<Route path="/detalhesCasa" render={x=> <DetalhesCasa casa={this.state}/>} />
   render() {
-
-    function DetalhesCasa() {
-      return (<p>oie</p>)
-    }
-
     return (
-      <Router>
-        <div>
-          <Route path="/detalhesCasa" component={DetalhesCasa} />
-          <Route exact path="/" render={x => <CasasList {...this.props}/>}/>
-        </div>
-      </Router>
+      <div id="contente">
+        <CasasList casas={this.props.casas} detalhesCasa={this.detalhesCasa} />, document.getElementById("contente")
+      </div>
     );
   }
 }
 
-class CasasList extends React.Component{
+class DetalhesCasa extends React.Component {
   render() {
-    console.log(this.props);
+    return (<div>{this.props.casa.id}</div>);
+  }
+}
+
+class CasasList extends React.Component {
+  render() {
+    var detalhesCasa = this.props.detalhesCasa;
     return (
       <div role="main">
         <section className="jumbotron text-center" id="presentation">
@@ -43,7 +73,7 @@ class CasasList extends React.Component{
             <div className="row">
               {this.props.casas.map(function (obj, index) {
                 return (
-                  <CasaFrame casa={obj} />
+                  <CasaFrame casa={obj} detalhesCasa={detalhesCasa} />
                 );
               })}
             </div>
@@ -57,8 +87,8 @@ class CasasList extends React.Component{
 class CasaFrame extends React.Component {
   render() {
     var imageStyle = { height: '225px', width: '100%', display: 'block' };
-    function clickView() {
-      document.location.href = '/topics';
+    function clickView(props) {
+      props.detalhesCasa(props.casa);
     };
     return (
       <div className="col-md-4">
@@ -71,7 +101,7 @@ class CasaFrame extends React.Component {
             <p className="card-text">Cor: {this.props.casa.cor}</p>
             <div className="d-flex justify-content-between align-items-center">
               <div className="btn-group">
-                <button onClick={clickView} type="link" className="btn btn-sm btn-outline-secondary">View</button>
+                <button onClick={() => clickView(this.props)} type="link" className="btn btn-sm btn-outline-secondary">View</button>
                 <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button>
               </div>
               <div className="text-muted">9 mins</div>
