@@ -12,7 +12,7 @@
     <header>
       <span>Aluguel de Imóveis</span>
     </header>
-    <main>
+    <main class="bg-light">
       <!-- <img src="./assets/logo.png" alt="Vue.js PWA"> -->
       <router-view></router-view>
     </main>

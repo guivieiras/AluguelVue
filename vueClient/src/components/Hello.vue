@@ -11,7 +11,7 @@
             </div>
           </section>
 
-          <div class="album py-5 bg-light">
+          <div class="album py-5">
             <div class="container">
               <div class="row">
                     <div v-for="casa in $root.casas" :key="casa.id" class="col-md-4">
