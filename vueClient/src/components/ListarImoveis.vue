@@ -6,7 +6,7 @@
               <p class="lead">Encontre imóveis aqui!</p>
               <p>
                 <a class="btn btn-primary my-2">Alugar</a>
-                <a class="btn btn-secondary my-2">Sobre</a>
+                <a href="/cadastrar" class="btn btn-secondary my-2">Cadastrar Imóvel</a>
               </p>
             </div>
           </section>
@@ -14,14 +14,15 @@
           <div class="album py-5">
             <div class="container">
               <div class="row">
-                    <div v-for="casa in $root.casas" :key="casa.id" class="col-md-4">
+                    <div v-for="imovel in $root.imoveis" :key="imovel.id" class="col-md-4">
                       <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" style="height: '225px'; width: '100%'; display: 'block'" :src="casa.urlImagem" alt="Imagem da casa" data-holder-rendered="true" />
+                        <img class="card-img-top" style="height: '225px'; width: '100%'; display: 'block'" :src="imovel.fotos[0]" alt="Imagem da casa" data-holder-rendered="true" />
 
 
                         <div class="card-body">
-                          <p class="card-text">{{ casa.descricao }}</p>
-                          <p class="card-text">Cor: {{ casa.cor }}</p>
+                          <p class="card-text">{{ imovel.descricao }}</p>
+                          <p class="card-text">Tipo: {{ imovel.tipo }}</p>
+                          <p class="card-text">Quartos: {{ imovel.quartos }}</p>
                           <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                               <button class="btn btn-sm btn-outline-secondary">View</button>
@@ -46,11 +47,11 @@ export default {
     run () {}
   },
   created: function () {
-    fetch('http://localhost:5000/api/casas')
+    fetch('http://localhost:5000/api/imoveis')
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(this)
-        this.$root.casas = responseJson
+        this.$root.imoveis = responseJson
       })
       .catch((error) => {
         console.error(error)

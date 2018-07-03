@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-light">
 
   <!-- Bootstrap core CSS -->
   <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
     <header>
       <span>Aluguel de Imóveis</span>
     </header>
-    <main class="bg-light">
+    <main >
       <!-- <img src="./assets/logo.png" alt="Vue.js PWA"> -->
       <router-view></router-view>
     </main>
@@ -51,6 +51,10 @@ export default {
 <style>
 body {
   margin: 0;
+  height: 100%;
+}
+html{
+  height: 100%;
 }
 
 #app {
@@ -58,6 +62,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+    height: 100%;
+
 }
 
 /* main {

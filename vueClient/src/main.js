@@ -10,6 +10,6 @@ new Vue({
   router,
   render: h => h(App),
   data: {
-    casas: [{cor: 'bege'}]
+    imoveis: []
   }
 })
