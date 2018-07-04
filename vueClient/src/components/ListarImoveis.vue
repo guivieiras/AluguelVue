@@ -23,14 +23,17 @@
                           <p class="card-text">{{ imovel.descricao }}</p>
                           <p class="card-text">Tipo: {{ imovel.tipo }}</p>
                           <p class="card-text">Quartos: {{ imovel.quartos }}</p>
+                          <p class="card-text">Suites: {{ imovel.suites }}</p>
+                          <p class="card-text">Vagas: {{ imovel.vagas }}</p>
+                          <p class="card-text">Banheiros: {{ imovel.banheiros }}</p>
+                          <p class="card-text">Valor total: {{ imovel.valor + imovel.iptu }}</p>
+                          <p class="card-text">Cidade: {{ imovel.cidade }} <br> Bairro: {{ imovel.bairro }} <br> CEP: {{ imovel.cep }}</p>
                           <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                              <button class="btn btn-sm btn-outline-secondary">View</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                              <button class="btn btn-sm btn-outline-secondary">Alugar</button>
+                              <!--button type="button" class="btn btn-sm btn-outline-secondary" @click="remover(imovel._id, $event)">Remover</button-->
                             </div>
-                            <div class="text-muted">9 mins</div>
                           </div>
-
                         </div>
                       </div>
                     </div>
@@ -41,13 +44,24 @@
 </template>
 
 <script>
+
 export default {
   name: 'hello',
   methods: {
-    run () {}
+    detlhesImovel (event) {
+    },
+    remover (imovelId, evento) {
+      console.log(imovelId)
+      console.log(evento)
+      fetch('/api/imoveis/' + imovelId, {mode: 'no-cors'})
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log(responseJson)
+        })
+    }
   },
   created: function () {
-    fetch('http://localhost:5000/api/imoveis')
+    fetch('/api/imoveis', {mode: 'no-cors'})
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(this)
@@ -130,6 +144,9 @@ footer p {
 
 /* New */
 
+.card-img-top{
+  height: 220px;
+}
 #presentation{
   color: white;
   background-image:  
