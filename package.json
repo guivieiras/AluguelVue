@@ -1,17 +1,17 @@
 {
-  "name": "aluguel-imoveis-vue",
-  "version": "1.0.0",
-  "scripts": {
-    "client": "cd vueClient && npm start",
-    "server": "cd server && node server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.2",
-    "mongodb": "^3.1.0"
-  },
-  "devDependencies": {
-    "concurrently": "^3.6.0"
-  }
+	"name": "aluguel-imoveis-vue",
+	"version": "1.0.0",
+	"scripts": {
+		"client": "cd vueClient && npm start",
+		"server": "cd server && node server.js",
+		"dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+	},
+	"devDependencies": {
+		"concurrently": "^3.6.1"
+	},
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"express": "^4.16.2",
+		"mongodb": "^3.1.0"
+	}
 }
